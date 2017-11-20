@@ -4,7 +4,6 @@
 #include <string>
 #include <cstring>
 #include <cstdlib>
-#include <list>
 
 #define ERROR -1
 
@@ -14,7 +13,8 @@ ifstream fileHandle;
 char buffer[256];
 int status;
 
-list<float> **indexVertice;
+float **indexVertice;
+int *custoVertice;
 
 /* Constantes */
 int numVertices; //numero de vértices do grafo
@@ -27,7 +27,6 @@ int readFirstLines(){
 
     for(int i = 0; i < 3; i++){
         fileHandle.getline (buffer,100);
-        cout << buffer << endl;
     }
 
     // Le o numero de vertices
@@ -46,14 +45,93 @@ int readFirstLines(){
 
     cout << numVertices << "\n";
     cout << costLimit << "\n";
+
+    return 0;
+}
+
+int readCoordSection(){
+    char *token;
+    if(fileHandle.eof()){ return ERROR;}
+
+    indexVertice = new float *[numVertices];
+    for(int n = 0; n < numVertices; n++)
+          indexVertice[n] = new float[2];
+
+    //Pula duas linhas
+    fileHandle.getline (buffer,100);
+    fileHandle.getline (buffer,100);
+
+    for(int i = 0; i < numVertices; i++){
+        fileHandle.getline (buffer,100);
+        token = std::strtok(buffer, " ");
+        int index = atoi(token);
+        token = std::strtok(NULL, " ");
+        indexVertice[index-1][0] = atol(token);
+        token = std::strtok(NULL, " ");
+        indexVertice[index-1][1] = atol(token);
+    }
+
+    /* //Print matriz
+    for(int i = 0; i < numVertices;i++)
+        cout << "index[" << i << "] (" <<indexVertice[i][0] << ") (" << indexVertice[i][1] << ")\n";
+    /* */
+    return 0;
+}
+
+int readScoreSection(){
+    char *token;
+    if(fileHandle.eof()){ return ERROR;}
+
+    custoVertice = new int [numVertices];
+
+    //Pula uma linha
+    fileHandle.getline (buffer,100);
+
+    for(int i = 0; i < numVertices; i++){
+        fileHandle.getline (buffer,100);
+        token = std::strtok(buffer, " ");
+        int index = atoi(token);
+        token = std::strtok(NULL, " ");
+        custoVertice[index-1] = atol(token);
+    }
+
+     //Print matriz
+    for(int i = 0; i < numVertices;i++)
+        cout << "index[" << i << "] (" << custoVertice[i] << ")\n";
+    /* */
+    return 0;
+}
+
+int readInitVertice(){
+    char *token;
+    if(fileHandle.eof()){ return ERROR;}
+
+    //Pula uma linha
+    fileHandle.getline (buffer,100);
+
+    fileHandle.getline (buffer,100);
+    verticeInit = atoi(buffer);
+
+    /* //Print
+    cout << "Vertice inicial[" << verticeInit << "]\n";
+    /* */
+    return 0;
 }
 
 int readFile(){
     status = readFirstLines();
     if(status==ERROR){return ERROR;}
 
+    status = readCoordSection();
+    if(status==ERROR){return ERROR;}
 
+    status = readScoreSection();
+    if(status==ERROR){return ERROR;}
 
+    status = readInitVertice();
+    if(status==ERROR){return ERROR;}
+
+    fileHandle.close();
     return 0;
 }
 
@@ -75,9 +153,6 @@ int main(){
 
     status = readFile();
     if(status==ERROR){return ERROR;}
-    while (! fileHandle.eof() ){
-        fileHandle.getline (buffer,100);
-        cout << buffer << endl;
-    }
+
     return 0;
 }
