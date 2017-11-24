@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include <limits>
 #include <string>
 #include <cstring>
 #include <cstdlib>
+#include <math.h>
 
 #define ERROR -1
 
@@ -15,6 +15,8 @@ int status;
 
 float **indexVertice;
 int *custoVertice;
+int **adjacentMat;
+
 
 /* Constantes */
 int numVertices; //numero de vértices do grafo
@@ -71,7 +73,7 @@ int readCoordSection(){
         indexVertice[index-1][1] = atol(token);
     }
 
-    /* //Print matriz
+     //Print matriz
     for(int i = 0; i < numVertices;i++)
         cout << "index[" << i << "] (" <<indexVertice[i][0] << ") (" << indexVertice[i][1] << ")\n";
     /* */
@@ -147,12 +149,44 @@ int openFile(char* file){
     }
 }
 
+int calcAdjacentMat(){
+    int xd, yd;
+
+    adjacentMat = new int *[numVertices];
+    for(int n = 0; n < numVertices; n++)
+          adjacentMat[n] = new int[numVertices];
+
+    for(int i = 0; i < numVertices; i++){
+        for(int j = 0; j < numVertices; j++){
+            xd = indexVertice[i][0] - indexVertice[j][0];
+            yd = indexVertice[i][1] - indexVertice[j][1];
+            adjacentMat[i][j] = (int)(sqrt( xd*xd + yd*yd) + 0.5);
+        }
+    }
+
+    //Print matriz
+    for(int i = 0; i < numVertices; i++){
+        cout << "index[" << i << "]";
+        for(int j = 0; j < numVertices; j++){
+            cout << " - " <<adjacentMat[i][j];
+        }
+        cout << "\n";
+    }
+    /* */
+
+    return 0;
+}
+
+
+
 int main(){
     status = openFile("instances/a8.oplib");
     if(status==ERROR){return ERROR;}
 
     status = readFile();
     if(status==ERROR){return ERROR;}
+
+    calcAdjacentMat();
 
     return 0;
 }
