@@ -12,16 +12,16 @@ using namespace std;
 ifstream fileHandle;
 char buffer[256];
 int status;
+/* Constantes */
+int numVertices; //numero de vértices do grafo
+int costLimit;  //Numero limite de distancia possivel
+int verticeInit; //Vertice inicial]
 
 float **indexVertice;
 int *custoVertice;
 int **adjacentMat;
+int *solucaoAtual;
 
-
-/* Constantes */
-int numVertices; //numero de vértices do grafo
-int costLimit;  //Numero limite de distancia possivel
-int verticeInit; //Vertice inicial
 
 int readFirstLines(){
     char *token;
@@ -177,7 +177,9 @@ int calcAdjacentMat(){
     return 0;
 }
 
-
+int greedy(){
+    int *solucaoAux = new int [numVertices];
+}
 
 int main(){
     status = openFile("instances/a8.oplib");
@@ -185,6 +187,8 @@ int main(){
 
     status = readFile();
     if(status==ERROR){return ERROR;}
+
+    solucaoAtual = new int [numVertices];
 
     calcAdjacentMat();
 
