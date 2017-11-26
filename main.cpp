@@ -77,7 +77,7 @@ void printInfos(){
 }
 
 int main(){
-    status = openFile("instances/bier127.oplib");
+    status = openFile("instances/kroA200.oplib");
     if(status==ERROR){return ERROR;}
 
     status = readFile();
