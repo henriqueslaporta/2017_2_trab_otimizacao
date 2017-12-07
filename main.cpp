@@ -3,7 +3,9 @@
 #include <string>
 #include <cstring>
 #include <cstdlib>
+#include <stdlib.h>
 #include <math.h>
+#include <ctime>
 
 #define ERROR -1
 
@@ -76,20 +78,39 @@ void printInfos(){
     cout << "\n";
 }
 
-int main(){
-    status = openFile("instances/kroA200.oplib");
+int main(int argc, char * argv[]){
+
+    if (argc != 2)
+    {
+        cerr << " USO CORRETO: ./bin/main NAMEFILE.oplib > output/OUT.dat " << endl;
+        return 0;
+    }
+
+    char pathfile[] = "instances/" ;
+    strcat(pathfile, argv[1]);
+
+
+    cout << pathfile << endl;
+
+    status = openFile(pathfile);
     if(status==ERROR){return ERROR;}
 
     status = readFile();
     if(status==ERROR){return ERROR;}
 
+    int start_t = clock();
+
     solucaoAtual = new int [numVertices + 1];
 
     calcAdjacentMat();
 
-	greedy();
-	
-	printInfos();
+    greedy();
+    
+    printInfos();
+
+    int stop_t = clock();
+
+    cout << "time :" << (stop_t - start_t) / double(CLOCKS_PER_SEC)*1000 << endl;
 
     return 0;
 }

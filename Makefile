@@ -1,11 +1,10 @@
 CC=g++
-CFLAGS= 
-#CFLAGS= -Wall -g
+# CFLAGS= 
+CFLAGS= -Wall -g
 BIN_DIR=./bin
 SRC_DIR=.
 
-all:  otmizacao
-	$(BIN_DIR)/main
+all: otmizacao
 
 otmizacao: main.o
 	$(CC) $(CFLAGS) -o $(BIN_DIR)/main $(BIN_DIR)/main.o
