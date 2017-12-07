@@ -89,9 +89,6 @@ int main(int argc, char * argv[]){
     char pathfile[] = "instances/" ;
     strcat(pathfile, argv[1]);
 
-
-    cout << pathfile << endl;
-
     status = openFile(pathfile);
     if(status==ERROR){return ERROR;}
 
