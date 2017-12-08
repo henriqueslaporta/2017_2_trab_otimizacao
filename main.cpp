@@ -86,6 +86,7 @@ int main(int argc, char * argv[]){
         return 0;
     }
 
+    // char pathfile[] = "instances/a8.oplib" ;
     char pathfile[] = "instances/" ;
     strcat(pathfile, argv[1]);
 

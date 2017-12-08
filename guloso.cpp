@@ -1,3 +1,7 @@
+#include <stdlib.h>
+
+#define MIN_RANDOM_RANGE 1
+#define MAX_RANDOM_RANGE 100
 
 int greedy(){
 	int *solucaoAux = new int [numVertices + 1];
@@ -15,14 +19,39 @@ int greedy(){
 	}
 	acesso[verticeInit] = 1;
 	solucaoAux[0] = verticeInit;
+
+	int alpha = 90; //menor que 90 dah estouro no range da linha 33
+	int random = 0;
+	int ephi = 0;
+
 	
 	while(finish != 1){
 		//Procura o proximo nodo
-		for(int i = 0; i < numVertices; i++){
+		for(int i = 0; i < numVertices; ++i){
+			
+			// Pega o melhor vizinho
 			if(acesso[i] == 0 && (custo + adjacentMat[actual][i]) <= costLimit){
 				if(next == -1 || (custo + adjacentMat[actual][i]) < (custo + adjacentMat[actual][next]))
 					next = i;
 			}
+
+			//aleatoriedade
+			if (i < (numVertices - 1))
+			{
+				random = i + (rand() % static_cast<int>(numVertices - i + 1)); //vizinho aleatorio
+				ephi = MIN_RANDOM_RANGE + (rand() % static_cast<int>(MAX_RANDOM_RANGE - MIN_RANDOM_RANGE + 1)); // (%) aleatorio
+
+				//se atingiu percentual aleatório pega o vizinho aleatorio e termina o FOR
+				if(ephi <= (MAX_RANDOM_RANGE - alpha)){
+					if(acesso[random] == 0 && (custo + adjacentMat[actual][random]) <= costLimit){
+						next = random;
+						i = numVertices+1;
+					}				
+				}
+				
+			}
+			
+
 		}
 		// Caso não encontrou nenhum nodo que nao ultrapasse o limite, retorna para o vertice inicial
 		if(next == -1){
@@ -48,12 +77,16 @@ int greedy(){
 		acesso[next] = 1;
 		
 		
-		if(next == verticeInit) finish = 1;
+		if(next == verticeInit)
+			finish = 1;
 		
 		next = -1;
 		it++;
-		if(it==1) acesso[verticeInit] = 0;
-		if(it>numVertices+1) finish = 1;
+		if(it==1) 
+			acesso[verticeInit] = 0;
+
+		if(it>numVertices+1) 
+			finish = 1;
 		
 	}
 	
