@@ -15,7 +15,7 @@ ifstream fileHandle;
 char buffer[256];
 int status;
 
-/* Constantes */
+// Constantes
 int numVertices; //numero de vértices do grafo
 int costLimit;  //Numero limite de distancia possivel
 int verticeInit; //Vertice inicial]
@@ -23,14 +23,19 @@ int verticeInit; //Vertice inicial]
 float **indexVertice;
 int *pontosVertice;
 int **adjacentMat;
-int *solucaoAtual;
 
+// Melhor solução conhecida
+int *solucaoMax;
+int pontosMax;
+int custoMax;
+
+// Solução atual
+int *solucaoAtual;
 int pontosAtual;
 int custoAtual;
 
 #include "arquivo.cpp"
 #include "guloso.cpp"
-
 
 int calcAdjacentMat(){
     int xd, yd;
@@ -61,21 +66,49 @@ int calcAdjacentMat(){
         cout << "\n";
     }
     cout << "\n";
-    /* */
-
+    */
     return 0;
 }
 
-void printInfos(){
-	cout << "Infos:\n";
-	cout << "Numero de Vertices: " << numVertices << "\tCusto Limite: " << costLimit << "\n";
-	cout << "Solucao Atual:\nCusto: " << custoAtual << "\tPremio: " << pontosAtual << "\n";
+void printInfosAtual(){
+	cout << "Infos" << endl;
+	cout << "Numero de Vertices: " << numVertices << "\tCusto Limite: " << costLimit << endl;
+	cout << "Solucao Atual:\nCusto: " << custoAtual << "\tPremio: " << pontosAtual << endl;
 	cout << solucaoAtual[0];
     for(int i = 1; i < numVertices+1;i++){
         if(solucaoAtual[i] != -1)
         	cout << " -> " << solucaoAtual[i];
     }
     cout << "\n";
+}
+
+void printInfosMax(){
+	cout << "Infos" << endl;
+	cout << "Numero de Vertices: " << numVertices << "\tCusto Limite: " << costLimit << endl;
+	cout << "Solucao Max:\nCusto: " << custoMax << "\tPremio: " << pontosMax << endl;
+	cout << solucaoMax[0];
+    for(int i = 1; i < numVertices+1;i++){
+        if(solucaoMax[i] != -1)
+        	cout << " -> " << solucaoMax[i];
+    }
+    cout << "\n";
+}
+
+void grasp(int iteracoes, int alpha){
+	int i;
+	for(i = 0; i < iteracoes; i++){
+		custoAtual = 0;
+		pontosAtual = 0;
+		greedy();
+		//local Search()
+		if(pontosAtual > pontosMax){
+			pontosMax = pontosAtual;
+			custoMax = custoAtual;
+			solucaoMax = solucaoAtual;
+			printInfosMax();
+		}
+	}
+	return;
 }
 
 int main(int argc, char * argv[]){
@@ -86,9 +119,7 @@ int main(int argc, char * argv[]){
         return 0;
     }
 
-    // char pathfile[] = "instances/a8.oplib" ;
-    char pathfile[] = "instances/" ;
-    strcat(pathfile, argv[1]);
+    char *pathfile = argv[1];
 
     status = openFile(pathfile);
     if(status==ERROR){return ERROR;}
@@ -98,13 +129,13 @@ int main(int argc, char * argv[]){
 
     int start_t = clock();
 
-    solucaoAtual = new int [numVertices + 1];
-
     calcAdjacentMat();
 
-    greedy();
-    
-    printInfos();
+    solucaoAtual = new int [numVertices + 1];
+
+    grasp(10,10);
+
+    printInfosMax();
 
     int stop_t = clock();
 

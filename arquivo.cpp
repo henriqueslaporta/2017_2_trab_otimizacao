@@ -1,4 +1,3 @@
-
 int readFirstLines(){
     char *token;
     if(fileHandle.eof()){ return ERROR;}
@@ -21,10 +20,10 @@ int readFirstLines(){
     token = std::strtok(NULL, " ");
     costLimit = atoi(token);
 
-	/* //Print
-    cout << "Num Vertices: " << numVertices << "\n";
-    cout << "Custo Limite: " << costLimit << "\n";
-	/**/
+	//Print
+    //cout << "Num Vertices: " << numVertices << "\n";
+    //cout << "Custo Limite: " << costLimit << "\n";
+	
     return 0;
 }
 
@@ -50,11 +49,11 @@ int readCoordSection(){
         indexVertice[index-1][1] = atol(token);
     }
 
-    /*//Print matriz
-    for(int i = 0; i < numVertices;i++)
-        cout << "index[" << i << "] (" <<indexVertice[i][0] << ") (" << indexVertice[i][1] << ")\n";
-    cout << "\n";
-    /* */
+    //Print matriz
+    //for(int i = 0; i < numVertices;i++)
+    //    cout << "index[" << i << "] (" <<indexVertice[i][0] << ") (" << indexVertice[i][1] << ")\n";
+    //cout << "\n";
+    
     return 0;
 }
 
@@ -75,16 +74,15 @@ int readScoreSection(){
         pontosVertice[index-1] = atol(token);
     }
 
-    /*//Print matriz
-    for(int i = 0; i < numVertices;i++)
-        cout << "index[" << i << "] (" << pontosVertice[i] << ")\n";
-    cout << "\n";
-    /* */
+    //Print matriz
+    //for(int i = 0; i < numVertices;i++)
+    //    cout << "index[" << i << "] (" << pontosVertice[i] << ")\n";
+    //cout << "\n";
+    
     return 0;
 }
 
 int readInitVertice(){
-    char *token;
     if(fileHandle.eof()){ return ERROR;}
 
     //Pula uma linha
@@ -93,10 +91,10 @@ int readInitVertice(){
     fileHandle.getline (buffer,100);
     verticeInit = atoi(buffer) - 1;
 
-    /*//Print
-    cout << "Vertice inicial[" << verticeInit << "]\n";
-    cout << "\n";
-    /* */
+    //Print
+    //cout << "Vertice inicial[" << verticeInit << "]\n";
+    //cout << "\n";
+    
     return 0;
 }
 
@@ -120,11 +118,11 @@ int readFile(){
 int openFile(char* file){
     fileHandle.open(file);
     if (! fileHandle.is_open()){
-            cout << "Error opening file";
+            cout << "Error opening file" << endl;
             return ERROR;
     }
     else{
-        cout << "Opening file: " << file << "\n";
+        cout << "Opening file: " << file << endl;
         return 0;
     }
 }

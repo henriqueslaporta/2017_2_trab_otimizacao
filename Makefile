@@ -4,7 +4,7 @@ CFLAGS= -Wall -g
 BIN_DIR=./bin
 SRC_DIR=.
 
-all: otmizacao
+all: clean otmizacao
 
 otmizacao: main.o
 	$(CC) $(CFLAGS) -o $(BIN_DIR)/main $(BIN_DIR)/main.o

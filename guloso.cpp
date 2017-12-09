@@ -13,7 +13,6 @@ int greedy(){
 	int pontos = 0;
 	int it = 1;
 	
-	
 	for(int i = 0; i < numVertices+1; i++){
         acesso[i] = 0;solucaoAux[i] = -1;
 	}
@@ -24,7 +23,6 @@ int greedy(){
 	int random = 0;
 	int ephi = 0;
 
-	
 	while(finish != 1){
 		//Procura o proximo nodo
 		for(int i = 0; i < numVertices; ++i){
@@ -39,6 +37,7 @@ int greedy(){
 			if (i < (numVertices - 1))
 			{
 				random = i + (rand() % static_cast<int>(numVertices - i + 1)); //vizinho aleatorio
+				if(random >= numVertices) random = numVertices-1; //controle para segmentation
 				ephi = MIN_RANDOM_RANGE + (rand() % static_cast<int>(MAX_RANDOM_RANGE - MIN_RANDOM_RANGE + 1)); // (%) aleatorio
 
 				//se atingiu percentual aleatório pega o vizinho aleatorio e termina o FOR
@@ -102,6 +101,6 @@ int greedy(){
         	cout << " -> " << solucaoAux[i];
     }
     cout << "\n";
-    /* */
+    */
     return 0;
 }
