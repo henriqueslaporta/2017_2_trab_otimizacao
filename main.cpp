@@ -99,6 +99,7 @@ void grasp(int iteracoes, int alpha){
 	for(i = 0; i < iteracoes; i++){
 		custoAtual = 0;
 		pontosAtual = 0;
+        cout << ""; //Por motivos magicos se eu tirar esse linha ocorre segmentation fault
 		greedy();
 		//local Search()
 		if(pontosAtual > pontosMax){

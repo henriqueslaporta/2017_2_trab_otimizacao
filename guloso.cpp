@@ -37,7 +37,7 @@ int greedy(){
 			if (i < (numVertices - 1))
 			{
 				random = i + (rand() % static_cast<int>(numVertices - i + 1)); //vizinho aleatorio
-				if(random >= numVertices) random = numVertices-1; //controle para segmentation
+				if(random > numVertices-1) random = numVertices-1; //controle para segmentation
 				ephi = MIN_RANDOM_RANGE + (rand() % static_cast<int>(MAX_RANDOM_RANGE - MIN_RANDOM_RANGE + 1)); // (%) aleatorio
 
 				//se atingiu percentual aleatório pega o vizinho aleatorio e termina o FOR
