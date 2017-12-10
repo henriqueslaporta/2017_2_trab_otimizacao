@@ -1,0 +1,7 @@
+Opening file: instances/eil76.oplib
+------------------ Infos --------------------------
+Numero de Vertices: 76	Custo Limite: 269
+Solucao Max:
+Custo: 257	Premio: 767
+0 -> 1 -> 35 -> 7 -> 45 -> 10 -> 65 -> 13 -> 52 -> 53 -> 9 -> 30 -> 0
+time: 54.111 s

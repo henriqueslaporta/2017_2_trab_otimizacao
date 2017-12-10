@@ -1,0 +1,7 @@
+Opening file: instances/eil51.oplib
+------------------ Infos --------------------------
+Numero de Vertices: 51	Custo Limite: 213
+Solucao Max:
+Custo: 209	Premio: 649
+0 -> 47 -> 17 -> 16 -> 39 -> 40 -> 14 -> 46 -> 3 -> 12 -> 24 -> 50 -> 45 -> 0
+time: 51.5134 s

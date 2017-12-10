@@ -1,0 +1,7 @@
+Opening file: instances/lin105.oplib
+------------------ Infos --------------------------
+Numero de Vertices: 105	Custo Limite: 7190
+Solucao Max:
+Custo: 7156	Premio: 821
+0 -> 102 -> 49 -> 67 -> 82 -> 85 -> 73 -> 84 -> 81 -> 61 -> 62 -> 72 -> 75 -> 104 -> 0
+time: 66.1351 s

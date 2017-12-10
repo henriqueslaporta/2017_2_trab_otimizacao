@@ -1,0 +1,7 @@
+Opening file: instances/kroA200.oplib
+------------------ Infos --------------------------
+Numero de Vertices: 200	Custo Limite: 14684
+Solucao Max:
+Custo: 14622	Premio: 906
+0 -> 143 -> 93 -> 186 -> 160 -> 22 -> 55 -> 163 -> 90 -> 181 -> 154 -> 138 -> 69 -> 153 -> 120 -> 110 -> 0
+time: 98.9677 s

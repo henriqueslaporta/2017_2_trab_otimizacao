@@ -115,11 +115,6 @@ void localSearch(int iteracoes){
 			std::copy_n(acessoAux, numVertices+1, acessoAtual);
 			pontosAtual = pontosAux;
 			custoAtual = custoAux;
-		}else{
-			std::copy_n(solucaoAtual, numVertices+1, solucaoAux);
-			std::copy_n(acessoAtual, numVertices+1, acessoAux);
-			pontosAux = pontosAtual;
-			custoAux = custoAtual;
 		}
 	}//END for iteracoes
 	return;

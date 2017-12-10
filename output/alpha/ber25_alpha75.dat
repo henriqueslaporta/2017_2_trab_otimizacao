@@ -1,0 +1,7 @@
+Opening file: instances/ber25.oplib
+------------------ Infos --------------------------
+Numero de Vertices: 25	Custo Limite: 3771
+Solucao Max:
+Custo: 3759	Premio: 434
+0 -> 19 -> 23 -> 13 -> 10 -> 12 -> 11 -> 24 -> 14 -> 4 -> 0
+time: 38.8705 s

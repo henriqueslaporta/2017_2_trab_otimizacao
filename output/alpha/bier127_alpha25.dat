@@ -1,0 +1,7 @@
+Opening file: instances/bier127.oplib
+------------------ Infos --------------------------
+Numero de Vertices: 127	Custo Limite: 59141
+Solucao Max:
+Custo: 58757	Premio: 552
+0 -> 113 -> 63 -> 10 -> 7 -> 44 -> 55 -> 124 -> 88 -> 60 -> 85 -> 87 -> 84 -> 65 -> 21 -> 118 -> 67 -> 9 -> 0
+time: 69.1739 s

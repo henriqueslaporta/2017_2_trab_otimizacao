@@ -1,0 +1,7 @@
+Opening file: instances/pr152.oplib
+------------------ Infos --------------------------
+Numero de Vertices: 152	Custo Limite: 36841
+Solucao Max:
+Custo: 35955	Premio: 668
+0 -> 28 -> 102 -> 78 -> 90 -> 51 -> 52 -> 81 -> 62 -> 57 -> 108 -> 109 -> 85 -> 0
+time: 83.0253 s

@@ -1,0 +1,7 @@
+Opening file: instances/a16.oplib
+------------------ Infos --------------------------
+Numero de Vertices: 16	Custo Limite: 270
+Solucao Max:
+Custo: 267	Premio: 240
+0 -> 4 -> 15 -> 14 -> 13 -> 12 -> 11 -> 10 -> 9 -> 7 -> 6 -> 8 -> 5 -> 3 -> 2 -> 0
+time: 34.3153 s

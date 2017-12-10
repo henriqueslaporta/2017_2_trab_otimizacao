@@ -1,0 +1,7 @@
+Opening file: instances/rat99.oplib
+------------------ Infos --------------------------
+Numero de Vertices: 99	Custo Limite: 606
+Solucao Max:
+Custo: 606	Premio: 1838
+0 -> 89 -> 88 -> 98 -> 97 -> 96 -> 95 -> 94 -> 85 -> 84 -> 75 -> 76 -> 87 -> 86 -> 78 -> 67 -> 66 -> 65 -> 64 -> 55 -> 56 -> 57 -> 58 -> 48 -> 0
+time: 70.7729 s
