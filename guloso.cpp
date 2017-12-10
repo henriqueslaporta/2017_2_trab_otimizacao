@@ -89,8 +89,8 @@ int greedy(int argAlpha){
 		
 	}
 	
-	solucaoAtual = solucaoAux;
-	acessoAtual = acesso;
+	std::copy_n(solucaoAux, numVertices+1, solucaoAtual);
+	std::copy_n(acesso, numVertices+1, acessoAtual);
 	pontosAtual = pontos;
 	custoAtual = custo;
 	

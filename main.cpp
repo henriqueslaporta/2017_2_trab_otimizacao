@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <ctime>
+#include <algorithm>    // std::copy
 
 #define TRUE	1
 #define ERROR	-1
@@ -112,10 +113,10 @@ void grasp(int iteracoes, int alpha, int itLocal){
 		greedy(alpha);
 		localSearch(itLocal);
 		if(pontosAtual > pontosMax){
+			std::copy_n(solucaoAtual, numVertices+1, solucaoMax);
+			std::copy_n(acessoAtual, numVertices+1, acessoMax);
 			pontosMax = pontosAtual;
 			custoMax = custoAtual;
-			solucaoMax = solucaoAtual;
-			//printInfosMax();
 		}
 	}
 	return;
@@ -145,6 +146,9 @@ int main(int argc, char * argv[]){
 	calcAdjacentMat();
 
 	solucaoAtual = new int [numVertices + 1];
+	acessoAtual = new int [numVertices + 1];
+	solucaoMax = new int [numVertices + 1];
+	acessoMax = new int [numVertices + 1];
 
 	grasp(iteracoes,alpha, itLocal);
 

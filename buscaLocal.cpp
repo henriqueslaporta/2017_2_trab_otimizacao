@@ -9,8 +9,10 @@ void localSearch(int iteracoes){
 	//		- Adicionar um nodo aleatóriamente
 	//		- Selecionar um ńodo aleatório e realizar a troca 2-opt
 
-	int *solucaoAux = solucaoAtual;
-	int *acessoAux = acessoAtual;
+	int *solucaoAux = new int [numVertices + 1];
+	std::copy_n(solucaoAtual, numVertices+1, solucaoAux);
+	int *acessoAux = new int [numVertices + 1];
+	std::copy_n(acessoAtual, numVertices+1, acessoAux);
 	int pontosAux = pontosAtual;
 	int custoAux = custoAtual;
 	int nodeRandom, opRandom;
@@ -29,7 +31,8 @@ void localSearch(int iteracoes){
 							//Achou o nodo e atualiza os valores de custo e pontos
 							if(solucaoAux[i] == nodeRandom){
 								achou = TRUE;
-								custoAux += adjacentMat[solucaoAux[i-1]][solucaoAux[i+1]] - (adjacentMat[solucaoAux[i-1]][nodeRandom] + adjacentMat[solucaoAux[i+1]][nodeRandom]);
+								custoAux += adjacentMat[solucaoAux[i-1]][solucaoAux[i+1]];
+								custoAux -= adjacentMat[solucaoAux[i-1]][nodeRandom] + adjacentMat[solucaoAux[i+1]][nodeRandom];
 								pontosAux -= pontosVertice[nodeRandom];
 							}
 							//Arruma o array para a nova solucao atual
@@ -55,11 +58,14 @@ void localSearch(int iteracoes){
 						for(int i = 0; i < numVertices + 1; i++){
 							//Achou a posicao e atualiza os valores de custo e pontos (se possivel)
 							if(solucaoAux[i] == posRandom){
-								if( (custoAux + (adjacentMat[solucaoAux[i]][nodeRandom] + adjacentMat[solucaoAux[i+1]][nodeRandom]) - adjacentMat[solucaoAux[i]][solucaoAux[i+1]]) > costLimit)
+								int custo = custoAux + (adjacentMat[solucaoAux[i]][nodeRandom] + adjacentMat[solucaoAux[i+1]][nodeRandom]);
+								custo -= adjacentMat[solucaoAux[i]][solucaoAux[i+1]];
+								if( custo > costLimit)
 									break;
 								else{
 									achou = TRUE;
-									custoAux += (adjacentMat[solucaoAux[i]][nodeRandom] + adjacentMat[solucaoAux[i+1]][nodeRandom]) - adjacentMat[solucaoAux[i]][solucaoAux[i+1]];
+									custoAux += adjacentMat[solucaoAux[i]][nodeRandom] + adjacentMat[solucaoAux[i+1]][nodeRandom];
+									custoAux -= adjacentMat[solucaoAux[i]][solucaoAux[i+1]];
 									pontosAux += pontosVertice[nodeRandom];
 									aux1 = solucaoAux[i+1];
 									solucaoAux[i+1] = nodeRandom;
@@ -82,15 +88,14 @@ void localSearch(int iteracoes){
 					//nodeRandom = rand() % (numVertices - 1);
 				break;
 		}//END Switch
-
 		if(pontosAux > pontosAtual){
-			solucaoAtual = solucaoAux;
-			acessoAtual = acessoAux;
+			std::copy_n(solucaoAux, numVertices+1, solucaoAtual);
+			std::copy_n(acessoAux, numVertices+1, acessoAtual);
 			pontosAtual = pontosAux;
 			custoAtual = custoAux;
 		}else{
-			solucaoAux = solucaoAtual;
-			acessoAux = acessoAtual;
+			std::copy_n(solucaoAtual, numVertices+1, solucaoAux);
+			std::copy_n(acessoAtual, numVertices+1, acessoAux);
 			pontosAux = pontosAtual;
 			custoAux = custoAtual;
 		}
