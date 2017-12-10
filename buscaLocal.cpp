@@ -1,6 +1,6 @@
 #define DeleteNode	0
 #define AddNode 	1
-#define OptTrade	2
+#define optNode		2
 
 void localSearch(int iteracoes){
 	// Implementação do Hill Climbing
@@ -64,8 +64,7 @@ void localSearch(int iteracoes){
 									break;
 								else{
 									achou = TRUE;
-									custoAux += adjacentMat[solucaoAux[i]][nodeRandom] + adjacentMat[solucaoAux[i+1]][nodeRandom];
-									custoAux -= adjacentMat[solucaoAux[i]][solucaoAux[i+1]];
+									custoAux = custo;
 									pontosAux += pontosVertice[nodeRandom];
 									aux1 = solucaoAux[i+1];
 									solucaoAux[i+1] = nodeRandom;
@@ -84,11 +83,34 @@ void localSearch(int iteracoes){
 						} //END for
 					}//END if
 				break;
-			case OptTrade:
-					//nodeRandom = rand() % (numVertices - 1);
+			case optNode:
+					nodeRandom = rand() % (numVertices - 1);
+					if(nodeRandom == verticeInit) break;
+					// verifica se o nodo selecionado realmente esta sendo utilizado
+					if(acessoAux[nodeRandom]){
+						//Procura a posição para inserir o nodo
+						for(int i = 0; i < numVertices + 1; i++){
+							//Achou a posicao e atualiza os valores de custo e pontos (se possivel)
+							if(solucaoAux[i] == nodeRandom){
+								if(solucaoAux[i-1] == verticeInit || solucaoAux[i+1] == verticeInit){i=numVertices+1; break;}
+								
+								int custo = custoAux + adjacentMat[solucaoAux[i-2]][solucaoAux[i+1]] + adjacentMat[solucaoAux[i+1]][nodeRandom] + adjacentMat[nodeRandom][solucaoAux[i-1]] + adjacentMat[solucaoAux[i-1]][solucaoAux[i+2]];
+								custo -= adjacentMat[solucaoAux[i-2]][solucaoAux[i-1]] - adjacentMat[solucaoAux[i-1]][nodeRandom] - adjacentMat[nodeRandom][solucaoAux[i+1]] - adjacentMat[solucaoAux[i+1]][solucaoAux[i+2]];
+								
+								if( custo > costLimit){i=numVertices+1; break;}
+								else{
+									custoAux = custo;
+									int aux1 = solucaoAux[i-1];
+									int aux2 = solucaoAux[i+1];
+									solucaoAux[i-1] = aux2;
+									solucaoAux[i+1] = aux1;
+								}
+							}
+						} //END for
+					}
 				break;
 		}//END Switch
-		if(pontosAux > pontosAtual){
+		if(pontosAux >= pontosAtual){
 			std::copy_n(solucaoAux, numVertices+1, solucaoAtual);
 			std::copy_n(acessoAux, numVertices+1, acessoAtual);
 			pontosAtual = pontosAux;

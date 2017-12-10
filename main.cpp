@@ -156,7 +156,7 @@ int main(int argc, char * argv[]){
 
 	int stop_t = clock();
 
-	cout << "time :" << (stop_t - start_t) / double(CLOCKS_PER_SEC)*1000 << endl;
+	cout << "time: " << ((stop_t - start_t) / double(CLOCKS_PER_SEC)*1000)/1000 << " s"<< endl;
 
 	return 0;
 }
