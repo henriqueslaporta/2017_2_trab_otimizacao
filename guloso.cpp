@@ -3,7 +3,7 @@
 #define MIN_RANDOM_RANGE 1
 #define MAX_RANDOM_RANGE 100
 
-int greedy(){
+int greedy(int argAlpha){
 	int *solucaoAux = new int [numVertices + 1];
 	int *acesso = new int [numVertices + 1];
 	int actual = verticeInit;
@@ -19,7 +19,7 @@ int greedy(){
 	acesso[verticeInit] = 1;
 	solucaoAux[0] = verticeInit;
 
-	int alpha = 90; //menor que 90 dah estouro no range da linha 33
+	int alpha = argAlpha; //menor que 90 dah estouro no range da linha 33
 	int random = 0;
 	int ephi = 0;
 
@@ -90,6 +90,7 @@ int greedy(){
 	}
 	
 	solucaoAtual = solucaoAux;
+	acessoAtual = acesso;
 	pontosAtual = pontos;
 	custoAtual = custo;
 	
