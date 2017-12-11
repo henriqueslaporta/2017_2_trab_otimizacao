@@ -29,13 +29,13 @@ int **adjacentMat;
 // Melhor solução conhecida
 int *solucaoMax;
 int *acessoMax;
-int pontosMax;
+int pontosMax = 0;
 int custoMax;
 
 // Solução atual
 int *solucaoAtual;
 int *acessoAtual;
-int pontosAtual;
+int pontosAtual = 0;
 int custoAtual;
 
 #include "arquivo.cpp"
@@ -111,6 +111,12 @@ void grasp(int iteracoes, int alpha, int itLocal){
 		pontosAtual = 0;
 		cout << ""; //Por motivos magicos se eu tirar esse linha ocorre segmentation fault
 		greedy(alpha);
+		if(pontosAtual > pontosMax){
+			std::copy_n(solucaoAtual, numVertices+1, solucaoMax);
+			std::copy_n(acessoAtual, numVertices+1, acessoMax);
+			pontosMax = pontosAtual;
+			custoMax = custoAtual;
+		}
 		localSearch(itLocal);
 		if(pontosAtual > pontosMax){
 			std::copy_n(solucaoAtual, numVertices+1, solucaoMax);
@@ -141,22 +147,27 @@ int main(int argc, char * argv[]){
 	status = readFile();
 	if(status==ERROR){return ERROR;}
 
-	int start_t = clock();
-
 	calcAdjacentMat();
+
+	int start_t = clock();
 
 	solucaoAtual = new int [numVertices + 1];
 	acessoAtual = new int [numVertices + 1];
 	solucaoMax = new int [numVertices + 1];
 	acessoMax = new int [numVertices + 1];
 
-	grasp(iteracoes,alpha, itLocal);
+	grasp(iteracoes,alpha,itLocal);
 
 	printInfosMax();
 
 	int stop_t = clock();
 
 	cout << "time: " << ((stop_t - start_t) / double(CLOCKS_PER_SEC)*1000)/1000 << " s"<< endl;
+
+	free(solucaoAtual);
+	free(acessoAtual);
+	free(solucaoMax);
+	free(acessoMax);
 
 	return 0;
 }

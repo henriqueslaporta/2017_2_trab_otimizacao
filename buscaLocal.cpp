@@ -117,5 +117,9 @@ void localSearch(int iteracoes){
 			custoAtual = custoAux;
 		}
 	}//END for iteracoes
+
+	free(solucaoAux);
+	free(acessoAux);
+
 	return;
 }

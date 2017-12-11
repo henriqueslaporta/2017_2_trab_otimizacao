@@ -1,0 +1,7 @@
+Opening file: instances/a8.oplib
+------------------ Infos --------------------------
+Numero de Vertices: 8	Custo Limite: 100
+Solucao Max:
+Custo: 94	Premio: 190
+0 -> 1 -> 4 -> 5 -> 6 -> 7 -> 0
+time: 25.1493 s

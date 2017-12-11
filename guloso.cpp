@@ -24,34 +24,32 @@ int greedy(int argAlpha){
 	int ephi = 0;
 
 	while(finish != 1){
-		//Procura o proximo nodo
-		for(int i = 0; i < numVertices; ++i){
-			
-			// Pega o melhor vizinho
-			if(acesso[i] == 0 && (custo + adjacentMat[actual][i]) <= costLimit){
-				if(next == -1 || (custo + adjacentMat[actual][i]) < (custo + adjacentMat[actual][next]))
-					next = i;
-			}
+		ephi = rand() % MAX_RANDOM_RANGE; // (%) aleatorio
 
-			//aleatoriedade
-			if (i < (numVertices - 1))
-			{
-				random = i + (rand() % static_cast<int>(numVertices - i + 1)); //vizinho aleatorio
-				if(random > numVertices-1) random = numVertices-1; //controle para segmentation
-				ephi = MIN_RANDOM_RANGE + (rand() % static_cast<int>(MAX_RANDOM_RANGE - MIN_RANDOM_RANGE + 1)); // (%) aleatorio
-
-				//se atingiu percentual aleatório pega o vizinho aleatorio e termina o FOR
-				if(ephi <= (MAX_RANDOM_RANGE - alpha)){
-					if(acesso[random] == 0 && (custo + adjacentMat[actual][random]) <= costLimit){
+		//se atingiu percentual aleatório pega o vizinho aleatorio e termina
+		if(ephi <= (MAX_RANDOM_RANGE - alpha) ){
+			for(int i = 0; i < numVertices * 10 ; ++i){
+				random = rand() % numVertices-1; //vizinho aleatorio
+				if(random >= 0 && random < numVertices && random != verticeInit && acesso[random] == 0){
+					if((custo + adjacentMat[actual][random]) <= costLimit){
 						next = random;
-						i = numVertices+1;
-					}				
+						i = numVertices * 10 + 1;
+					}
 				}
-				
 			}
-			
-
 		}
+		else{
+			//Procura o proximo nodo
+			for(int i = 0; i < numVertices; ++i){
+				// Pega o melhor vizinho
+				if(acesso[i] == 0 && (custo + adjacentMat[actual][i]) <= costLimit){
+					if(next == -1 || (custo + adjacentMat[actual][i]) < (custo + adjacentMat[actual][next]))
+						next = i;
+				}
+			}
+		}
+
+		
 		// Caso não encontrou nenhum nodo que nao ultrapasse o limite, retorna para o vertice inicial
 		if(next == -1){
 			int found;
@@ -103,5 +101,8 @@ int greedy(int argAlpha){
     }
     cout << "\n";
     */
+
+    free(solucaoAux);
+	free(acesso);
     return 0;
 }
