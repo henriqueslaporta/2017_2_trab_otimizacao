@@ -1,0 +1,13 @@
+param costLimit := 100
+param vInit := 1;
+
+param: VERTICES: score posX posY := 
+1 0 140 145
+2 36 148 169
+3 32 164 169
+4 30 172 169
+5 34 156 169
+6 38 140 169
+7 40 132 169
+8 42 124 169
+	;
