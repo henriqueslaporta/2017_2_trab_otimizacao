@@ -19,7 +19,7 @@ int greedy(int argAlpha){
 	acesso[verticeInit] = 1;
 	solucaoAux[0] = verticeInit;
 
-	int alpha = argAlpha; //menor que 90 dah estouro no range da linha 33
+	int alpha = argAlpha;
 	int random = 0;
 	int ephi = 0;
 
