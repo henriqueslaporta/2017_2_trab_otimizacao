@@ -21,8 +21,7 @@ int readFirstLines(){
     costLimit = atoi(token);
 
 	//Print
-    cout << "Num Vertices: " << numVertices << "\n";
-    cout << "Custo Limite: " << costLimit << "\n";
+    cout << "param costLimit :=" << costLimit << ";\n";
 	
     return 0;
 }
@@ -75,8 +74,10 @@ int readScoreSection(){
     }
 
     //Print matriz
+    cout << "param: VERTICES: score := "<<endl;
     for(int i = 0; i < numVertices;i++)
-        cout <<  i << "\t" << pontosVertice[i] << endl;
+        cout <<  i+1 << "\t" << pontosVertice[i] << endl;
+    cout << ";\n";
     
     return 0;
 }
@@ -91,7 +92,7 @@ int readInitVertice(){
     verticeInit = atoi(buffer) - 1;
 
     //Print
-    //cout << "Vertice inicial[" << verticeInit << "]\n";
+    cout << "param vInit := 1" << ";\n";
     //cout << "\n";
     
     return 0;
@@ -121,7 +122,7 @@ int openFile(char* file){
             return ERROR;
     }
     else{
-        cout << "Opening file: " << file << endl;
+        //cout << "Opening file: " << file << endl;
         return 0;
     }
 }

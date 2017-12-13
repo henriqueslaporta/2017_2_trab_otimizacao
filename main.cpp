@@ -58,12 +58,13 @@ int calcAdjacentMat(){
 	}
 
 	//Print matriz
-	cout << "\n";
+	cout << "param: ARCS: dist := "<<endl;
 	for(int i = 0; i < numVertices; i++){
 		for(int j = 0; j < numVertices; j++){
 			cout << i+1 << "\t" << j+1 << "\t" << adjacentMat[i][j] << endl;
 		}
 	}
+	cout << ";\n";
 	
 	return 0;
 }
@@ -151,11 +152,12 @@ int main(int argc, char * argv[]){
 
 	grasp(iteracoes,alpha,itLocal);
 
-	printInfosMax();
+	//printInfosMax();
+	cout << "end;" << endl;
 
 	int stop_t = clock();
 
-	cout << "time: " << ((stop_t - start_t) / double(CLOCKS_PER_SEC)*1000)/1000 << " s"<< endl;
+	//cout << "time: " << ((stop_t - start_t) / double(CLOCKS_PER_SEC)*1000)/1000 << " s"<< endl;
 
 	free(solucaoAtual);
 	free(acessoAtual);
