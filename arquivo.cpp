@@ -21,8 +21,8 @@ int readFirstLines(){
     costLimit = atoi(token);
 
 	//Print
-    //cout << "Num Vertices: " << numVertices << "\n";
-    //cout << "Custo Limite: " << costLimit << "\n";
+    cout << "Num Vertices: " << numVertices << "\n";
+    cout << "Custo Limite: " << costLimit << "\n";
 	
     return 0;
 }
@@ -51,7 +51,7 @@ int readCoordSection(){
 
     //Print matriz
     //for(int i = 0; i < numVertices;i++)
-    //    cout << "index[" << i << "] (" <<indexVertice[i][0] << ") (" << indexVertice[i][1] << ")\n";
+    //    cout << "index[" << i << "] " <<indexVertice[i][0] << " " << indexVertice[i][1] << "\n";
     //cout << "\n";
     
     return 0;
@@ -75,9 +75,8 @@ int readScoreSection(){
     }
 
     //Print matriz
-    //for(int i = 0; i < numVertices;i++)
-    //    cout << "index[" << i << "] (" << pontosVertice[i] << ")\n";
-    //cout << "\n";
+    for(int i = 0; i < numVertices;i++)
+        cout <<  i << "\t" << pontosVertice[i] << endl;
     
     return 0;
 }

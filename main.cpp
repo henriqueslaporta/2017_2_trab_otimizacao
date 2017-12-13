@@ -57,21 +57,14 @@ int calcAdjacentMat(){
 		}
 	}
 
-	/*//Print matriz
-	cout << "Vertice";
-	for(int i = 0; i < numVertices; i++){
-		cout << "    " << i; 
-	}
+	//Print matriz
 	cout << "\n";
 	for(int i = 0; i < numVertices; i++){
-		cout << "index[" << i << "]";
 		for(int j = 0; j < numVertices; j++){
-			cout << " - " <<adjacentMat[i][j];
+			cout << i+1 << "\t" << j+1 << "\t" << adjacentMat[i][j] << endl;
 		}
-		cout << "\n";
 	}
-	cout << "\n";
-	*/
+	
 	return 0;
 }
 
